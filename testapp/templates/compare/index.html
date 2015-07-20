@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="." method="POST" enctype="multipart/form-data">
+    {{ form }}
+    {% csrf_token %}
+    <div>
+    <input type="submit" class="btn btn-primary" value="Compare"/>
+    </div>
+    <button class="add">+</button>
+    <button class="del">-</button>
+</form>
+
+{% if result %}
+    <div>{{ result }}</div>
+{% endif %}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <div{% if message.tags %} class="{{ message.tags }} alert alert-danger"{% endif %}>{{ message }}</div>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
